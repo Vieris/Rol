@@ -1,0 +1,49 @@
+<p>{{nombre?.charAt(0)?.toUpperCase()}}{{nombre?.slice(1)}}</p>
+<div class="pixel-borders hp">
+    <progress class="nes-progress is-success" [value]="stats.hp" max="100"></progress>
+    {{stats.hp}}/100
+</div>
+<br>
+<p *ngIf="dead">DEAD!</p>
+<div *ngIf="stats.clase; else noClase">
+    <p>Clase: {{stats.clase?.nombre}}</p>
+    <div *ngIf="stats.skill; else noSkill">
+        <p>Habilidad: {{stats.skill}}</p>
+        <div *ngIf="stats.arma; else noArma">
+            Arma: {{stats.arma.nombre.toLowerCase()}}
+        </div>
+        <ng-template #noArma>
+            Elige un arma:
+            <br><br>
+            <mat-radio-group
+            aria-labelledby="example-radio-group-label"
+            class="example-radio-group"
+            [(ngModel)]="armaElegida">
+                <mat-radio-button class="nes-radio" *ngFor="let season of stats.clase?.armas" [value]="season">
+                    {{season}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <button type="button" class="nes-btn" (click)="addArma('armaElegida')">
+                Aceptar
+            </button>
+            <button type="button" class="nes-btn" (click)="addArma()">Aleatorio</button>
+        </ng-template>
+    </div>
+    <ng-template #noSkill>
+        Elige habilidad: 
+        <span *ngFor="let item of stats.clase?.skills" >
+            <button type="button" class="nes-btn" (click)="addSkill(item)">
+                {{item?.charAt(0)?.toUpperCase()}}{{item?.slice(1)}}
+            </button>
+        </span>
+        <button type="button" class="nes-btn" (click)="addSkill()">Aleatorio</button>
+    </ng-template>
+</div>
+<ng-template #noClase>
+    <div>
+        Elegir clase: 
+        <button type="button" class="nes-btn" (click)="addClase('asesino')">Asesino</button>
+        <button type="button" class="nes-btn" (click)="addClase('guerrero')">Guerrero</button>
+        <button type="button" class="nes-btn" (click)="addClase()">Aleatorio</button>
+    </div>
+</ng-template>
