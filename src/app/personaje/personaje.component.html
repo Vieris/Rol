@@ -1,36 +1,36 @@
-<p>{{nombre?.charAt(0)?.toUpperCase()}}{{nombre?.slice(1)}}</p>
-<div class="pixel-borders hp">
-    <progress class="nes-progress is-success" [value]="stats.hp" max="100"></progress>
-    {{stats.hp}}/100
+<div class="hp">
+    <span class="dead-mes" *ngIf="stats.hp <= 0">DEAD!</span>
+    <img class="poison" *ngIf="stats.veneno>0 && stats.hp>0" src="./assets/images/Drop.png">
+    <progress class="nes-progress is-success" 
+        [ngClass]="{'adr1':(stats.skill==='adrenalina' && stats.hp < 90), 'adr2':(stats.skill==='adrenalina' && stats.hp < 50), 'adr3':(stats.skill==='adrenalina' && stats.hp < 10)}" 
+        [value]="stats.hp" max="100">
+    </progress>
+    <span class="nes-text" [ngClass]="{'is-error':(stats.hp <= 0)}">{{stats.hp}}</span>/100 
 </div>
 <br>
-<p *ngIf="dead">DEAD!</p>
 <div *ngIf="stats.clase; else noClase">
-    <p>Clase: {{stats.clase?.nombre}}</p>
+    <p><span style="font-weight: bold;">Clase:</span> {{stats.clase?.nombre}}</p>
     <div *ngIf="stats.skill; else noSkill">
-        <p>Habilidad: {{stats.skill}}</p>
+        <p><span style="font-weight: bold;">Habilidad:</span> {{stats.skill}}</p>
         <div *ngIf="stats.arma; else noArma">
-            Arma: {{stats.arma.nombre.toLowerCase()}}
+            <p><span style="font-weight: bold;">Arma:</span> {{stats.arma.nombre}}</p>
         </div>
         <ng-template #noArma>
-            Elige un arma:
-            <br><br>
-            <mat-radio-group
-            aria-labelledby="example-radio-group-label"
-            class="example-radio-group"
-            [(ngModel)]="armaElegida">
-                <mat-radio-button class="nes-radio" *ngFor="let season of stats.clase?.armas" [value]="season">
-                    {{season}}
-                </mat-radio-button>
-            </mat-radio-group>
-            <button type="button" class="nes-btn" (click)="addArma('armaElegida')">
+            <h3>Elige un arma:</h3>
+            <div *ngFor="let item of stats.clase.armas;let indice=index">
+                <label>
+                    <input type="radio" class="nes-radio" [(ngModel)]="armaElegida" name="eleccionArma" value={{item.nombre}} />
+                    <span style="font-weight: bold;">{{item.nombre}}</span>&nbsp;<span style="font-size: 0.8em;">({{item.descripcion}})</span> 
+                </label><br>
+            </div>
+            <button type="button" class="nes-btn" (click)="addArma(armaElegida)">
                 Aceptar
             </button>
             <button type="button" class="nes-btn" (click)="addArma()">Aleatorio</button>
         </ng-template>
     </div>
     <ng-template #noSkill>
-        Elige habilidad: 
+        <h3>Elige habilidad: </h3>
         <span *ngFor="let item of stats.clase?.skills" >
             <button type="button" class="nes-btn" (click)="addSkill(item)">
                 {{item?.charAt(0)?.toUpperCase()}}{{item?.slice(1)}}
@@ -41,7 +41,7 @@
 </div>
 <ng-template #noClase>
     <div>
-        Elegir clase: 
+        <h3>Elegir clase: </h3>
         <button type="button" class="nes-btn" (click)="addClase('asesino')">Asesino</button>
         <button type="button" class="nes-btn" (click)="addClase('guerrero')">Guerrero</button>
         <button type="button" class="nes-btn" (click)="addClase()">Aleatorio</button>

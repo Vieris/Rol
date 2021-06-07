@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+
+@font-face {
+    font-family: 'PS2P';
+    src: url('./assets/fonts/PressStart2P-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    
+  }
+
+html, body { height: 100%; }
+body { 
+    margin: 3em 5em;
+    font-family:"PS2P" !important; 
+    font-size: 0.75em;
+}
+button {
+    font-size: 0.75em; 
+    margin: 0 2px !important;
+}
+
+
+/* Importing Bootstrap SCSS file. */
+//@import '~bootstrap/scss/bootstrap';

@@ -9,9 +9,6 @@ export interface Character {
     armadura: number;
     velocidad: number;
     suerte: number;
-    contadorveneno?: number;
-    derribado?: boolean;
-    contadorzaf?: number;
-    velocidadInicial: number;
-    fallo?: boolean;
+    veneno : number;
 }
+

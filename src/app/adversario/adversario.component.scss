@@ -3,23 +3,6 @@
   width: 90%;
   text-align: center;
 }
-
-h3{
-  font-size: 1.2em;
-}
-
-.adr1{
-  background-color: rgba(255, 99, 71, 0.33);
-}
-
-.adr2{
-  background-color: rgba(255, 99, 71, 0.67);
-}
-
-.adr3{
-  background-color: rgba(255, 99, 71);
-}
-
 .dead-mes{
   position: absolute;
   top: 1.9em;
@@ -27,7 +10,15 @@ h3{
   z-index: 2;
   font-size: 2em;
 }
-
+.adr1{
+  background-color: rgba(255, 99, 71, 0.33);
+}
+.adr2{
+  background-color: rgba(255, 99, 71, 0.67);
+}
+.adr3{
+  background-color: rgba(255, 99, 71);
+}
 .poison{
   height: 3em;
   width: auto;
@@ -36,12 +27,4 @@ h3{
   position: absolute;
   top: 3.8em;
   left: 12.5%;
-}
-
-button{
-  margin: 1em !important;
-}
-
-h3{
-  margin-top: 1.5em;
 }

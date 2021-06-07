@@ -1,6 +1,21 @@
-<app-personaje 
-[nombre]="'jugador'" >
-</app-personaje>
-<br>
-<button (click)="modHP(10)">Añadir 10 salud</button> &nbsp;
-<button (click)="modHP(-10)">Reducir 10 salud</button>
+<div class="row justify-content-center game-container">
+    <div class="col-12 col-lg-5 nes-container with-title profile-card">
+        <p class="title">Jugador</p>
+        <app-personaje 
+            [nombre]="'jugador'" >
+        </app-personaje>
+    </div>
+    <div class="col-12 col-lg-2">
+        <div class="controls">
+            <button type="button" class="nes-btn" (click)="lockCombat=true; atacar();" [ngClass]="{'is-disabled':(this.lockCombat)}" >Ataque!</button>
+            <button type="button" class="nes-btn is-warning" (click)="restart();" *ngIf="end">Combatir de nuevo</button>
+        </div>
+    </div>
+    <div class="col-12 col-lg-5 nes-container with-title profile-card">
+        <p class="title">Enemigo</p>
+        <app-adversario>
+            [nombre]="'enemigo'" >
+        </app-adversario> 
+    </div>
+</div>
+
