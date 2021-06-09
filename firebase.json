@@ -1,16 +1,22 @@
 {
   "hosting": {
-    "public": "public",
+    "public": "dist/rol",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+    "rewrites": [{
+        "source": "/public/**",
+        "destination": "/public.html"
+      },
       {
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "storage": {
+      "rules": "storage.rules"
+    }
   }
 }
